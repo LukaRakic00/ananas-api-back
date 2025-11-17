@@ -1,0 +1,14 @@
+target/
+.mvn/
+.mvnw
+mvnw
+mvnw.cmd
+.git/
+.gitignore
+README.md
+HELP.md
+FRONTEND_*.md
+*.md
+.env
+excel-to-xml/
+
