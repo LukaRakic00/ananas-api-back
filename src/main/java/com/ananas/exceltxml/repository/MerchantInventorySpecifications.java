@@ -37,70 +37,70 @@ public class MerchantInventorySpecifications {
 
             if (merchantInventoryId != null && !merchantInventoryId.trim().isEmpty()) {
                 predicates.add(cb.like(
-                    cb.lower(root.get("merchantInventoryId")),
+                    cb.lower(cb.coalesce(root.get("merchantInventoryId").as(String.class), cb.literal(""))),
                     "%" + merchantInventoryId.toLowerCase() + "%"
                 ));
             }
 
             if (productName != null && !productName.trim().isEmpty()) {
                 predicates.add(cb.like(
-                    cb.lower(root.get("productName")),
+                    cb.lower(cb.coalesce(root.get("productName").as(String.class), cb.literal(""))),
                     "%" + productName.toLowerCase() + "%"
                 ));
             }
 
             if (status != null && !status.trim().isEmpty()) {
                 predicates.add(cb.like(
-                    cb.lower(root.get("status")),
+                    cb.lower(cb.coalesce(root.get("status").as(String.class), cb.literal(""))),
                     "%" + status.toLowerCase() + "%"
                 ));
             }
 
             if (l1Category != null && !l1Category.trim().isEmpty()) {
                 predicates.add(cb.like(
-                    cb.lower(root.get("l1Category")),
+                    cb.lower(cb.coalesce(root.get("l1Category").as(String.class), cb.literal(""))),
                     "%" + l1Category.toLowerCase() + "%"
                 ));
             }
 
             if (productType != null && !productType.trim().isEmpty()) {
                 predicates.add(cb.like(
-                    cb.lower(root.get("productType")),
+                    cb.lower(cb.coalesce(root.get("productType").as(String.class), cb.literal(""))),
                     "%" + productType.toLowerCase() + "%"
                 ));
             }
 
             if (ean != null && !ean.trim().isEmpty()) {
                 predicates.add(cb.like(
-                    cb.lower(root.get("ean")),
+                    cb.lower(cb.coalesce(root.get("ean").as(String.class), cb.literal(""))),
                     "%" + ean.toLowerCase() + "%"
                 ));
             }
 
             if (aCode != null && !aCode.trim().isEmpty()) {
                 predicates.add(cb.like(
-                    cb.lower(root.get("aCode")),
+                    cb.lower(cb.coalesce(root.get("aCode").as(String.class), cb.literal(""))),
                     "%" + aCode.toLowerCase() + "%"
                 ));
             }
 
             if (sku != null && !sku.trim().isEmpty()) {
                 predicates.add(cb.like(
-                    cb.lower(root.get("sku")),
+                    cb.lower(cb.coalesce(root.get("sku").as(String.class), cb.literal(""))),
                     "%" + sku.toLowerCase() + "%"
                 ));
             }
 
             if (tags != null && !tags.trim().isEmpty()) {
                 predicates.add(cb.like(
-                    cb.lower(root.get("tags")),
+                    cb.lower(cb.coalesce(root.get("tags").as(String.class), cb.literal(""))),
                     "%" + tags.toLowerCase() + "%"
                 ));
             }
 
             if (warehouse != null && !warehouse.trim().isEmpty()) {
                 predicates.add(cb.like(
-                    cb.lower(root.get("warehouse")),
+                    cb.lower(cb.coalesce(root.get("warehouse").as(String.class), cb.literal(""))),
                     "%" + warehouse.toLowerCase() + "%"
                 ));
             }

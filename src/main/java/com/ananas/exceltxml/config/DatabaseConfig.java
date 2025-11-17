@@ -56,8 +56,18 @@ public class DatabaseConfig {
         log.info("Konekcija na bazu: {}", url.replaceAll(":[^:@]+@", ":****@"));
         log.info("Username: {}", dbUsername);
 
+        // Konfiguracija za PostgreSQL pooler - onemogućava prepared statement caching
+        // što rešava problem sa "prepared statement already exists"
+        String jdbcUrl = url;
+        if (!jdbcUrl.contains("?")) {
+            jdbcUrl += "?";
+        } else {
+            jdbcUrl += "&";
+        }
+        jdbcUrl += "prepareThreshold=0"; // Onemogućava prepared statements
+
         return DataSourceBuilder.create()
-                .url(url)
+                .url(jdbcUrl)
                 .username(dbUsername)
                 .password(dbPassword)
                 .driverClassName("org.postgresql.Driver")

@@ -240,9 +240,13 @@ public class MerchantInventoryController {
     /**
      * GET /api/excel
      * Vraća sve redove sa paginacijom
-     * Podržava JSON (default) i XML format (Accept: application/xml)
+     * Podržava JSON (default), XML format (Accept: application/xml) i Excel format (Accept: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)
      */
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(produces = {
+            MediaType.APPLICATION_JSON_VALUE, 
+            MediaType.APPLICATION_XML_VALUE,
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    })
     public ResponseEntity<?> getAllRows(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
@@ -250,7 +254,20 @@ public class MerchantInventoryController {
         try {
             Page<MerchantInventoryDTO> rows = service.getAllRows(page, size);
             
-            // Ako se traži XML format, vraćamo XML
+            // Ako se traži Excel format
+            if (accept != null && (accept.contains("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") 
+                    || accept.contains("application/excel") 
+                    || accept.contains("application/x-excel")
+                    || accept.contains("application/xlsx"))) {
+                byte[] excelData = excelExportService.exportAllToExcel(page, size);
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+                headers.setContentDispositionFormData("attachment", "merchant_inventory.xlsx");
+                headers.setContentLength(excelData.length);
+                return new ResponseEntity<>(excelData, headers, HttpStatus.OK);
+            }
+            
+            // Ako se traži XML format
             if (accept != null && accept.contains("application/xml")) {
                 String xml = xmlExportService.exportToXml(rows.getContent());
                 HttpHeaders headers = new HttpHeaders();
