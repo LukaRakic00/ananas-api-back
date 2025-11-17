@@ -10,11 +10,11 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExcelUploadResponse {
+public class MerchantInventoryUploadResponse {
     private UUID uploadId;
     private int totalRows;
     private int savedRows;
     private String message;
-    private List<ExcelRowDTO> rows;
+    private List<MerchantInventoryDTO> rows;
 }
 

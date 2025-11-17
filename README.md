@@ -56,23 +56,9 @@ SUPABASE_DB_PASSWORD=your_password_here
 
 ### 3. Kreiranje tabele u Supabase
 
-Izvršite sledeći SQL u Supabase SQL Editor-u:
+Izvršite SQL iz `database_migration.sql` fajla u Supabase SQL Editor-u.
 
-```sql
-CREATE TABLE excel_rows (
-    id SERIAL PRIMARY KEY,
-    upload_id UUID NOT NULL DEFAULT gen_random_uuid(),
-    naziv VARCHAR(255) NOT NULL,
-    vrednost VARCHAR(255),
-    napomena TEXT,
-    row_number INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE INDEX idx_upload_id ON excel_rows(upload_id);
-CREATE INDEX idx_created_at ON excel_rows(created_at);
-```
+**Napomena:** SQL fajl automatski briše staru tabelu `excel_rows` i kreira novu tabelu `merchant_inventory` sa svim potrebnim kolonama i indeksima.
 
 ### 4. Pokretanje aplikacije
 

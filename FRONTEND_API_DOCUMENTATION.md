@@ -221,7 +221,7 @@ fetch('https://ananas-api-back.onrender.com/api/excel/export/xml?page=0&size=100
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'excel_rows.xml';
+    a.download = 'merchant_inventory.xml';
     a.click();
   });
 ```

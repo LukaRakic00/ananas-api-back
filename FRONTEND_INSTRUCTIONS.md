@@ -232,7 +232,7 @@ const blob = new Blob([xml], { type: 'application/xml' });
 const url = window.URL.createObjectURL(blob);
 const a = document.createElement('a');
 a.href = url;
-a.download = 'excel_rows.xml';
+    a.download = 'merchant_inventory.xml';
 a.click();
 ```
 
