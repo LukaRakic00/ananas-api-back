@@ -84,7 +84,10 @@ Aplikacija će se pokrenuti na `http://localhost:8080`
 
 ## 📚 API Dokumentacija
 
-### Frontend Endpointi (CRUD) - Base URL: `/api/excel`
+### Frontend Endpointi (CRUD)
+
+**Base URL (Produkcija):** `https://ananas-api-back.onrender.com/api/excel`  
+**Base URL (Lokalno):** `http://localhost:8080/api/excel`
 
 | Metoda | Endpoint | Opis |
 |--------|----------|------|
@@ -101,7 +104,10 @@ Aplikacija će se pokrenuti na `http://localhost:8080`
 | GET | `/api/excel/export/xml` | Export kao XML |
 | GET | `/api/excel/export/xml/{uploadId}` | Export kao XML po upload ID-u |
 
-### Ananas Endpointi (READ only) - Base URL: `/api/ananas/excel`
+### Ananas Endpointi (READ only)
+
+**Base URL (Produkcija):** `https://ananas-api-back.onrender.com/api/ananas/excel`  
+**Base URL (Lokalno):** `http://localhost:8080/api/ananas/excel`
 
 | Metoda | Endpoint | Opis |
 |--------|----------|------|
@@ -195,7 +201,7 @@ Glavne zavisnosti definisane u `pom.xml`:
 const formData = new FormData();
 formData.append('file', fileInput.files[0]);
 
-const response = await fetch('http://localhost:8080/api/excel/upload', {
+const response = await fetch('https://ananas-api-back.onrender.com/api/excel/upload', {
   method: 'POST',
   body: formData
 });
@@ -206,18 +212,30 @@ console.log(data);
 ### Pregled svih redova
 
 ```bash
+# Produkcija
+curl https://ananas-api-back.onrender.com/api/excel?page=0&size=20
+
+# Lokalno
 curl http://localhost:8080/api/excel?page=0&size=20
 ```
 
 ### Pretraga
 
 ```bash
+# Produkcija
+curl "https://ananas-api-back.onrender.com/api/excel/search?search=tekst&page=0&size=20"
+
+# Lokalno
 curl "http://localhost:8080/api/excel/search?search=tekst&page=0&size=20"
 ```
 
 ### Kreiranje novog reda
 
 ```bash
+# Produkcija
+curl -X POST https://ananas-api-back.onrender.com/api/excel \
+
+# Lokalno
 curl -X POST http://localhost:8080/api/excel \
   -H "Content-Type: application/json" \
   -d '{

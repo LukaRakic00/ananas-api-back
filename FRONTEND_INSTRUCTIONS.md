@@ -3,12 +3,14 @@
 ## Važno!
 
 **Frontend koristi samo endpoint sa CRUD privilegijama:**
-- Base URL: `http://localhost:8080/api/excel`
+- Base URL (Produkcija): `https://ananas-api-back.onrender.com/api/excel`
+- Base URL (Lokalno): `http://localhost:8080/api/excel`
 - **OVO JE JEDINI ENDPOINT KOJI FRONTEND TREBA DA KORISTI**
 - Ovaj endpoint ima sve CRUD operacije (Create, Read, Update, Delete)
 
 **Ananas endpoint (READ only) - NE KORISTITI U FRONTENDU:**
-- Base URL: `http://localhost:8080/api/ananas/excel`
+- Base URL (Produkcija): `https://ananas-api-back.onrender.com/api/ananas/excel`
+- Base URL (Lokalno): `http://localhost:8080/api/ananas/excel`
 - Ovaj endpoint je samo za Ananas sistem i ima samo READ privilegije
 - **Frontend NE SME da koristi ovaj endpoint**
 
@@ -17,6 +19,13 @@
 ## Endpointi za Frontend
 
 ### Base URL
+
+**Produkcija:**
+```
+https://ananas-api-back.onrender.com/api/excel
+```
+
+**Lokalno razvojno okruženje:**
 ```
 http://localhost:8080/api/excel
 ```
@@ -215,7 +224,7 @@ const data = await response.json();
 
 **JavaScript primer:**
 ```javascript
-const response = await fetch('http://localhost:8080/api/excel/export/xml?page=0&size=1000');
+const response = await fetch('https://ananas-api-back.onrender.com/api/excel/export/xml?page=0&size=1000');
 const xml = await response.text();
 
 // Download XML fajl
@@ -277,7 +286,7 @@ function ExcelUpload() {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:8080/api/excel/upload', {
+      const response = await fetch('https://ananas-api-back.onrender.com/api/excel/upload', {
         method: 'POST',
         body: formData
       });
@@ -308,6 +317,11 @@ export default ExcelUpload;
 
 ## Važno za Frontend Tim
 
-✅ **KORISTITI:** `http://localhost:8080/api/excel/*` - sve CRUD operacije
-❌ **NE KORISTITI:** `http://localhost:8080/api/ananas/excel/*` - samo za Ananas sistem (READ only)
+✅ **KORISTITI:** 
+- Produkcija: `https://ananas-api-back.onrender.com/api/excel/*` - sve CRUD operacije
+- Lokalno: `http://localhost:8080/api/excel/*` - sve CRUD operacije
+
+❌ **NE KORISTITI:** 
+- Produkcija: `https://ananas-api-back.onrender.com/api/ananas/excel/*` - samo za Ananas sistem (READ only)
+- Lokalno: `http://localhost:8080/api/ananas/excel/*` - samo za Ananas sistem (READ only)
 

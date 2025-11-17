@@ -1,6 +1,13 @@
 # API Dokumentacija za Frontend
 
 ## Base URL
+
+**Produkcija:**
+```
+https://ananas-api-back.onrender.com/api/excel
+```
+
+**Lokalno razvojno okruženje:**
 ```
 http://localhost:8080/api/excel
 ```
@@ -43,7 +50,7 @@ Uploaduje Excel fajl (.xlsx ili .xls) i učitava podatke u bazu.
 const formData = new FormData();
 formData.append('file', fileInput.files[0]);
 
-fetch('http://localhost:8080/api/excel/upload', {
+fetch('https://ananas-api-back.onrender.com/api/excel/upload', {
   method: 'POST',
   body: formData
 })
@@ -206,7 +213,7 @@ fetch('http://localhost:8080/api/excel/upload', {
 
 **Primer korišćenja:**
 ```javascript
-fetch('http://localhost:8080/api/excel/export/xml?page=0&size=1000')
+fetch('https://ananas-api-back.onrender.com/api/excel/export/xml?page=0&size=1000')
   .then(response => response.text())
   .then(xml => {
     // Download XML fajl
@@ -230,7 +237,8 @@ fetch('http://localhost:8080/api/excel/export/xml?page=0&size=1000')
 
 ## Endpointi sa READ privilegijama (za Ananas)
 
-Base URL: `http://localhost:8080/api/ananas/excel`
+Base URL (Produkcija): `https://ananas-api-back.onrender.com/api/ananas/excel`  
+Base URL (Lokalno): `http://localhost:8080/api/ananas/excel`
 
 Svi endpointi su isti kao gore, ali **NEMA** POST, PUT, DELETE metoda. Samo GET metode:
 
@@ -285,7 +293,7 @@ function ExcelUpload() {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:8080/api/excel/upload', {
+      const response = await fetch('https://ananas-api-back.onrender.com/api/excel/upload', {
         method: 'POST',
         body: formData
       });

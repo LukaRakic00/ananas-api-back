@@ -51,11 +51,18 @@ public class ExcelController {
      * Vraća sve redove sa paginacijom
      */
     @GetMapping
-    public ResponseEntity<Page<ExcelRowDTO>> getAllRows(
+    public ResponseEntity<?> getAllRows(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size) {
-        Page<ExcelRowDTO> rows = excelService.getAllRows(page, size);
-        return ResponseEntity.ok(rows);
+        try {
+            Page<ExcelRowDTO> rows = excelService.getAllRows(page, size);
+            return ResponseEntity.ok(rows);
+        } catch (Exception e) {
+            Map<String, Object> error = new HashMap<>();
+            error.put("error", true);
+            error.put("message", "Greška pri učitavanju podataka: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+        }
     }
 
     /**
